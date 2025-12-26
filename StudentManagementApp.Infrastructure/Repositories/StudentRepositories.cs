@@ -11,33 +11,33 @@ namespace StudentManagementApp.Infrastructure.Repositories
 {
     public class StudentRepository : IStudentRepository
     {
-        private readonly AppDbContext _db;
+        private readonly AppDbContext db;
 
         public StudentRepository(AppDbContext db)
         {
-            _db = db;
+            db = db;
         }
 
         public void Add(Student st)
         {
-            _db.Students.Add(st);
+            db.Students.Add(st);
         }
 
         public Student GetById(int id)
         {
-            return _db.Students.FirstOrDefault(s => s.id == id);
+            return db.Students.FirstOrDefault(s => s.id == id);
         }
 
         public IEnumerable<Student> GetByName(string name)
         {
-            return _db.Students
+            return db.Students
                       .Where(s => s.fullName.ToLower().Contains(name.ToLower()))
                       .ToList();
         }
 
         public IEnumerable<Student> GetAll()
         {
-            return _db.Students;
+            return db.Students;
         }
 
         public bool Delete(int id)
@@ -45,7 +45,7 @@ namespace StudentManagementApp.Infrastructure.Repositories
             var st = GetById(id);
             if (st == null) return false;
 
-            _db.Students.Remove(st);
+            db.Students.Remove(st);
             return true;
         }
 

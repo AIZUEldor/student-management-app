@@ -11,11 +11,11 @@ namespace StudentManagementApp.Application.Servises
 {
     public class StudentService
     {
-        private readonly IStudentRepository _repo;
+        private readonly IStudentRepository repo;
 
         public StudentService(IStudentRepository repo)
         {
-            _repo = repo;
+            repo = repo;
         }
 
         public void Add(int id, string name, int age)
@@ -27,32 +27,32 @@ namespace StudentManagementApp.Application.Servises
                 age = age
             };
 
-            _repo.Add(st);
+            repo.Add(st);
         }
 
         public Student GetById(int id)
         {
-            return _repo.GetById(id);
+            return repo.GetById(id);
         }
 
         public IEnumerable<Student> GetByName(string name)
         {
-            return _repo.GetByName(name);
+            return repo.GetByName(name);
         }
 
         public IEnumerable<Student> GetAll()
         {
-            return _repo.GetAll();
+            return repo.GetAll();
         }
 
         public bool Delete(int id)
         {
-            return _repo.Delete(id);
+            return repo.Delete(id);
         }
 
         public bool Update(int id, string name, int age)
         {
-            return _repo.Update(new Student
+            return repo.Update(new Student
             {
                 id = id,
                 fullName = name,
